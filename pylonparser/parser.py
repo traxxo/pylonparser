@@ -1,8 +1,7 @@
-import os
 import requests
 from bs4 import BeautifulSoup, Comment
 from selectolax.parser import HTMLParser
-import time
+
 
 def get_page(url: str) -> BeautifulSoup:
     """
@@ -64,18 +63,21 @@ def parse_tr_table(soup: BeautifulSoup, table_id_css: str) -> list:
                 0
             ].text()
             try:
-                table_dict["id"] = row.css("th")[0].attributes["data-append-csv"].strip()
+                table_dict["id"] = (
+                    row.css("th")[0].attributes["data-append-csv"].strip()
+                )
             except KeyError:
                 table_dict["id"] = row.css("td")[6].css("a")[0].attrs["href"].strip()
-                
+
             for stat in row.css("td"):
                 table_dict[stat.attributes["data-stat"]] = stat.text()
-                
-            table_dict = {k: (v if v != '' else '0') for k, v in table_dict.items()}
-            
+
+            table_dict = {k: (v if v != "" else "0") for k, v in table_dict.items()}
+
             table_list.append(table_dict)
-        
+
     return table_list
+
 
 def get_game_stats(url: str, table: str) -> list:
     """
@@ -98,8 +100,3 @@ def get_game_stats(url: str, table: str) -> list:
     soup = get_page(url)
     table_list = parse_tr_table(soup, f"#{table}")
     return table_list
-def get_game_stats(url:str, table: str) -> list:
-    soup = get_page(url)
-    table_list = parse_tr_table(soup, f"#{table}")
-    return table_list
-    
