@@ -1,4 +1,3 @@
-import pytest
 from unittest.mock import patch, Mock
 from bs4 import BeautifulSoup
 from pylonparser.parser import get_page, parse_tr_table, get_game_stats
