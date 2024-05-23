@@ -7,7 +7,7 @@ A tool to parse football game stats.
 This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the project and its dependencies, run:
 
 ```sh
-poetry install
+pip install pylonparser
 ```
 
 Usage
