@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "pylonparser"
+version = "0.1.0"
+description = ""
+authors = ["Anatoli Nischakow"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+selectolax = "^0.3.21"
+beautifulsoup4 = "^4.12.3"
+
+
+requests = "^2.32.2"
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+pylonparser = "pylonparser.main:main"
