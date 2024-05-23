@@ -1,26 +1,23 @@
-# Project Name
+# PylonParser
 
-A brief description of your project.
-
-## Table of Contents
-
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+A tool to parse football game stats.
 
 ## Installation
 
-Instructions on how to install and set up your project.
+This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the project and its dependencies, run:
 
-## Usage
+```sh
+poetry install
+```
 
-Instructions on how to use your project and any relevant examples.
+Usage
+Provide instructions on how to use your project. Include code examples if possible.
 
-## Contributing
+Testing
+This project uses pytest for testing. To run the tests, use:
 
-Guidelines for contributing to your project and how others can get involved.
+Contributing
+Contributions are welcome! Please read the contributing guidelines first.
 
-## License
-
-Information about the license for your project.
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
