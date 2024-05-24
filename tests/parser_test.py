@@ -83,9 +83,9 @@ def test_parse_tr_table():
     table_list = parse_tr_table(soup, "#example_table")
     assert len(table_list) == 2
     assert table_list[0]["player"] == "Deshaun Watson"
-    assert table_list[0]["pass_cmp"] == "20"
+    assert table_list[0]["pass_cmp"] == 20
     assert table_list[1]["player"] == "David Johnson"
-    assert table_list[1]["pass_cmp"] == "0"  # Ensure empty strings are handled
+    assert table_list[1]["pass_cmp"] == 0  # Ensure empty strings are handled
 
 
 @patch("pylonparser.parser.requests.get", side_effect=mock_requests_get)
@@ -95,6 +95,6 @@ def test_get_game_stats(mock_get):
     stats = get_game_stats(url, table)
     assert len(stats) == 2
     assert stats[0]["player"] == "Deshaun Watson"
-    assert stats[0]["pass_cmp"] == "20"
+    assert stats[0]["pass_cmp"] == 20
     assert stats[1]["player"] == "David Johnson"
-    assert stats[1]["pass_cmp"] == "0"  # Ensure empty strings are handled
+    assert stats[1]["pass_cmp"] == 0  # Ensure empty strings are handled
