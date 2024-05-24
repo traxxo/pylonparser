@@ -70,9 +70,16 @@ def parse_tr_table(soup: BeautifulSoup, table_id_css: str) -> list:
                 table_dict["id"] = row.css("td")[6].css("a")[0].attrs["href"].strip()
 
             for stat in row.css("td"):
-                table_dict[stat.attributes["data-stat"]] = stat.text()
+                if stat.text().replace(".", "").isdigit():
+                    try:
+                        value = int(stat.text())
+                    except ValueError:
+                        value = float(stat.text())
+                else:
+                    value = stat.text()
+                table_dict[stat.attributes["data-stat"]] = value
 
-            table_dict = {k: (v if v != "" else "0") for k, v in table_dict.items()}
+            table_dict = {k: (v if v != "" else 0) for k, v in table_dict.items()}
 
             table_list.append(table_dict)
 
