@@ -13,20 +13,20 @@ pip install pylonparser
 Usage
 Provide instructions on how to use your project. Include code examples if possible.
 ```sh
-import pandas as pd
-from pylonparser.parser import get_game_stats
+url = "https://www.basketball-reference.com/boxscores/202405220MIN.html"
 
-game_stats = get_game_stats("https://www.pro-football-reference.com/boxscores/202009100kan.htm", "player_offense")
-df = pd.DataFrame(game_stats)
+basketball_match = BasketballMatch(url)
+df = pd.DataFrame(basketball_match.basic_away)
 print(df.head())
 
 ❯
-           player        id team pass_cmp pass_att pass_yds pass_td pass_int pass_sacked  ... rush_td rush_long targets rec rec_yds rec_td rec_long fumbles fumbles_lost
-0  Deshaun Watson  WatsDe00  HOU       20       32      253       1        1           4  ...       1        13       0   0       0      0        0       0            0
-1   David Johnson  JohnDa08  HOU        0        0        0       0        0           0  ...       1        19       4   3      32      0       15       0            0
-2    Duke Johnson  JohnDu00  HOU        0        0        0       0        0           0  ...       0         7       1   0       0      0        0       0            0
-3     Will Fuller  FullWi01  HOU        0        0        0       0        0           0  ...       0         0      10   8     112      0       31       0            0
-4    Jordan Akins  AkinJo00  HOU        0        0        0       0        0           0  ...       0         0       2   2      39      1       20       0            0
+          id             player     mp    fg   fga  fg_pct  fg3  fg3a  fg3_pct   ft  fta  ft_pct  orb  drb  trb  ast  stl  blk  tov   pf   pts plus_minus reason
+0  washipj01    P.J. Washington  40:50   4.0  10.0   0.400  2.0   8.0     0.25  3.0  3.0   1.000  0.0  7.0  7.0  0.0  0.0  2.0  3.0  4.0  13.0        +12    NaN
+1  doncilu01        Luka Dončić  40:45  12.0  26.0   0.462  3.0  10.0     0.30  6.0  7.0   0.857  0.0  6.0  6.0  8.0  3.0  1.0  4.0  2.0  33.0         -9    NaN
+2  irvinky01       Kyrie Irving  40:09  12.0  23.0   0.522  0.0   3.0     0.00  6.0  6.0   1.000  1.0  4.0  5.0  4.0  0.0  1.0  2.0  3.0  30.0         +5    NaN
+3  jonesde02  Derrick Jones Jr.  34:55   4.0   9.0   0.444  0.0   2.0     0.00  0.0  0.0   0.000  2.0  2.0  4.0  2.0  0.0  0.0  0.0  1.0   8.0         -8    NaN
+4  gaffoda01     Daniel Gafford  21:07   5.0   9.0   0.556  0.0   0.0     0.00  0.0  0.0   0.000  4.0  5.0  9.0  0.0  0.0  1.0  2.0  2.0  10.0        -15    NaN
+
 ```
 Testing
 This project uses pytest for testing. To run the tests, use:

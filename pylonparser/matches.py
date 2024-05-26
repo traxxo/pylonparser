@@ -45,9 +45,14 @@ class FootballMatch(Match):
 
 
 class SoccerMatch(Match):
+    """_summary_
+
+    Args:
+        Match (_type_): _description_
+    """
+
     def __init__(self, url: str):
         super().__init__(url)
-        # Define attributes or methods specific to SoccerMatch if needed
 
 
 class BasketballMatch(Match):

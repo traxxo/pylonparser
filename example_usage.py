@@ -7,4 +7,4 @@ if __name__ == "__main__":
 
     basketball_match = BasketballMatch(url)
     df = pd.DataFrame(basketball_match.basic_away)
-    print(df)
+    print(df.head())
