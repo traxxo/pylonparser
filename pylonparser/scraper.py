@@ -9,11 +9,34 @@ logger = logging.getLogger(__name__)
 
 
 class WebScraper:
+    """
+    A class for scraping and parsing HTML tables from a web page.
+
+    Attributes:
+        url (str): The URL of the web page to scrape.
+
+    Methods:
+        __init__(self, url: str): Initializes a new instance of the WebScraper class.
+        get_page(self, url: str) -> BeautifulSoup: Fetches the web page content and returns it as a BeautifulSoup object.
+        parse_football_table(self, table_id: str) -> list: Parses a football table from the web page and returns it as a list of dictionaries.
+        find_basketball_table_ids(self): Finds the IDs of basketball tables in the web page and returns them as a list.
+        parse_table_type(self, table_type: str) -> tuple: Parses the table type string to determine the partial ID and occurrence.
+        translate_table_id(self, html: HTMLParser, partial_id: str, occurrence: int) -> str: Translates a partial table ID to a full table ID based on its occurrence in the HTML content.
+        parse_basketball_table(self, table_type: str): Parses a basketball table from the web page and returns it as a list of dictionaries.
+    """
+
     def __init__(self, url: str):
         self.url = url
         self.soup = self.get_page(url)
 
     def get_page(self, url: str) -> BeautifulSoup:
+        """
+        Fetches the web page content and returns it as a BeautifulSoup object.
+
+        :param url: The URL of the web page.
+        :return: A BeautifulSoup object representing the web page content.
+        :raises requests.RequestException: If an error occurs while fetching the web page.
+        """
         try:
             response = requests.get(url)
             response.raise_for_status()
@@ -29,6 +52,15 @@ class WebScraper:
             raise
 
     def parse_football_table(self, table_id: str) -> list:
+        """
+        Parses a football table from the HTML document.
+
+        Args:
+            table_id (str): The ID of the table to be parsed.
+
+        Returns:
+            list: A list of dictionaries representing the parsed table.
+        """
         html = HTMLParser(str(self.soup))
         table = html.css_first(f"#{table_id}").css("tbody tr")
         table_list = []
@@ -52,6 +84,12 @@ class WebScraper:
         return table_list
 
     def find_basketball_table_ids(self):
+        """
+        Finds and returns the IDs of all basketball tables in the HTML document.
+
+        Returns:
+            list: A list of table IDs.
+        """
         html = HTMLParser(str(self.soup))
         tables = html.css("table")
         table_ids = []

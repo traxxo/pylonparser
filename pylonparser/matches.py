@@ -7,6 +7,27 @@ class Match(WebScraper):
 
 
 class FootballMatch(Match):
+    """
+    Represents a football match.
+
+    Args:
+        url (str): The URL of the football match.
+
+    Attributes:
+        player_offense (list): The parsed football table for player offense.
+        player_defense (list): The parsed football table for player defense.
+        receiving_advanced (list): The parsed football table for receiving advanced statistics.
+        returns (list): The parsed football table for returns.
+        kicking (list): The parsed football table for kicking.
+        passing_advanced (list): The parsed football table for passing advanced statistics.
+        rushing_advanced (list): The parsed football table for rushing advanced statistics.
+        defense_advanced (list): The parsed football table for defense advanced statistics.
+        home_starters (list): The parsed football table for home team starters.
+        vis_starters (list): The parsed football table for visiting team starters.
+        home_snap_counts (list): The parsed football table for home team snap counts.
+        vis_snap_counts (list): The parsed football table for visiting team snap counts.
+    """
+
     def __init__(self, url: str):
         super().__init__(url)
         self.player_offense = self.parse_football_table("player_offense")
@@ -30,6 +51,19 @@ class SoccerMatch(Match):
 
 
 class BasketballMatch(Match):
+    """
+    Represents a basketball match.
+
+    Args:
+        url (str): The URL of the basketball match.
+
+    Attributes:
+        basic_away (dict): The basic statistics of the away team.
+        basic_home (dict): The basic statistics of the home team.
+        advanced_away (dict): The advanced statistics of the away team.
+        advanced_home (dict): The advanced statistics of the home team.
+    """
+
     def __init__(self, url: str):
         super().__init__(url)
         self.basic_away = self.parse_basketball_table("basic-away-stats")
