@@ -156,9 +156,12 @@ class WebScraper:
         :param table_type: The type of the table (e.g., 'basic-home-stats', 'advanced-away-stats').
         :return: A list of dictionaries with the table data.
         """
-        partial_id, occurrence = self.parse_table_type(table_type)
         html = HTMLParser(str(self.soup))
-        table_id = self.translate_table_id(html, partial_id, occurrence)
+        if table_type != "schedule":
+            partial_id, occurrence = self.parse_table_type(table_type)
+            table_id = self.translate_table_id(html, partial_id, occurrence)
+        else:
+            table_id = "schedule"
         table = html.css_first(f"#{table_id}").css("tbody tr")
         table_list = []
 
@@ -166,8 +169,11 @@ class WebScraper:
             table_dict = {}
             header_cell = row.css("th")[0]
             if header_cell.text() not in ["", "Reserves"]:
-                table_dict["id"] = header_cell.attributes["data-append-csv"].strip()
-                table_dict[header_cell.attributes["data-stat"]] = header_cell.text()
+                try:
+                    table_dict["id"] = header_cell.attributes["data-append-csv"].strip()
+                    table_dict[header_cell.attributes["data-stat"]] = header_cell.text()
+                except KeyError:
+                    pass
                 for stat in row.css("td"):
                     value = stat.text()
                     if value.replace(".", "").isdigit():
