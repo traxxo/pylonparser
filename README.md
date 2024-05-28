@@ -1,10 +1,8 @@
 # PylonParser
 
-A tool to parse football game stats.
+This package is used to obtain Pro Football Reference and Basketball Reference using web scraping tables, for example to perform data analysis or data science. All rights belong to the respective sites and the package should not be used to load their servers. Please read the corresponding specifications in their robots.txt files.
 
 ## Installation
-
-This project uses [Poetry](https://python-poetry.org/) for dependency management. To install the project and its dependencies, run:
 
 ```sh
 pip install pylonparser
