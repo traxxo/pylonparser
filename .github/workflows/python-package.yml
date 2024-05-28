@@ -57,11 +57,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
         with:
+          default_bump: "patch"
+          release_branches: "main"
           tag_prefix: ""
-          release_branches: main
-          custom_tag: |
-            poetry version patch
-            git tag -a v$(poetry version -s) -m "v$(poetry version -s)"
+          source: "."
 
       - name: Commit version bump
         run: |
