@@ -48,10 +48,26 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pipx install poetry
-          poetry self add poetry-bumpversion
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install
 
-      - name: Build
+      - name: Create git tag
+        if: github.ref == 'refs/heads/main'
+        id: tag_version
         run: |
-            poetry version ${{ github.ref_name }}
-            poetry build
+          version=$(poetry version -s)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag v$version
+          git push origin v$version
+
+      - name: Build package
+        run: |
+          poetry build
+
+      - name: Publish to PyPI
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
