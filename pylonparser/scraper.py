@@ -186,3 +186,4 @@ class WebScraper:
 if __name__ == "__main__":
     game_url = "https://www.basketball-reference.com/boxscores/202405220MIN.html"
     scraper = WebScraper(game_url)
+    print(scraper.parse_basketball_table("basic-home-stats"))
