@@ -78,7 +78,7 @@ class BasketballMatch(Match):
 
 
 class IceHockey(Match):
-    """A class representing an ice hockey match.
+    """A class representing an ice hockey match. (WIP)
 
     Args:
         Match (type): The base class for all match types.
