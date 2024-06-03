@@ -54,12 +54,12 @@ jobs:
         - name: Determine version bump
           id: determine_version
           run: |
-                if git log -1 --pretty=%B | grep -iqE "major"; then
-                  echo "VERSION_BUMP=major" >> $GITHUB_ENV
-                elif git log -1 --pretty=%B | grep -iqE "minor"; then
-                  echo "VERSION_BUMP=minor" >> $GITHUB_ENV
-                else
-                  echo "VERSION_BUMP=patch" >> $GITHUB_ENV
+            if git log -1 --pretty=%B | grep -iqE "major"; then
+              echo "VERSION_BUMP=major" >> $GITHUB_ENV
+            elif git log -1 --pretty=%B | grep -iqE "minor"; then
+              echo "VERSION_BUMP=minor" >> $GITHUB_ENV
+            else
+              echo "VERSION_BUMP=patch" >> $GITHUB_ENV
 
         - name: Bump version
           id: bump_version
