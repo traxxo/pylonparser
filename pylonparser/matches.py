@@ -75,3 +75,20 @@ class BasketballMatch(Match):
         self.basic_home = self.parse_basketball_table("basic-home-stats")
         self.advanced_away = self.parse_basketball_table("advanced-away-stats")
         self.advanced_home = self.parse_basketball_table("advanced-home-stats")
+
+
+class IceHockey(Match):
+    """A class representing an ice hockey match.
+
+    Args:
+        Match (type): The base class for all match types.
+
+    Attributes:
+        basic_away (dict): The basic statistics of the away team.
+        basic_home (dict): The basic statistics of the home team.
+    """
+
+    def __init__(self, url: str):
+        super().__init__(url)
+        self.basic_away = self.parse_icehockey_table("basic-away-stats")
+        self.basic_home = self.parse_icehockey_table("basic-home-stats")
