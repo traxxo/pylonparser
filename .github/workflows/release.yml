@@ -52,43 +52,14 @@ jobs:
                 VERSION: ${{ env.VERSION }}
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  publish:
-    needs: create-release
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install poetry
-          poetry install
-
-      - name: Mint token
-        id: mint
-        uses: tschm/token-mint-action@v1.0.3
-
-      - name: Publish the package with poetry
-        run: |
-          poetry publish --build -u __token__ -p '${{ steps.mint.outputs.api-token }}'
-
-      - name: Create GitHub Release
-        uses: actions/create-release@v1
-        env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-              tag_name: v${{ env.VERSION }}
-              release_name: Release ${{ env.VERSION }}
-              body: |
-                  Automated release of version ${{ env.VERSION }}.
-              draft: false
-              prerelease: false
+        - name: Create GitHub Release
+          uses: actions/create-release@v1
+          env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+                tag_name: v${{ env.VERSION }}
+                release_name: Release ${{ env.VERSION }}
+                body: |
+                    Automated release of version ${{ env.VERSION }}.
+                draft: false
+                prerelease: false
