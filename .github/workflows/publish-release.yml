@@ -52,18 +52,6 @@ jobs:
                 VERSION: ${{ env.VERSION }}
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-        - name: Create GitHub Release
-          uses: actions/create-release@v1
-          env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-                tag_name: v${{ env.VERSION }}
-                release_name: Release ${{ env.VERSION }}
-                body: |
-                    Automated release of version ${{ env.VERSION }}.
-                draft: false
-                prerelease: false
-
   publish:
     needs: create-release
     runs-on: ubuntu-latest
@@ -92,3 +80,15 @@ jobs:
       - name: Publish the package with poetry
         run: |
           poetry publish --build -u __token__ -p '${{ steps.mint.outputs.api-token }}'
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+              tag_name: v${{ env.VERSION }}
+              release_name: Release ${{ env.VERSION }}
+              body: |
+                  Automated release of version ${{ env.VERSION }}.
+              draft: false
+              prerelease: false
