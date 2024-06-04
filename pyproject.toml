@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pylonparser"
-version = "0.5.4"
+version = "0.5.5"
 description = "A tool to parse football game stats."
 authors = ["Your Name <your.email@example.com>"]
 license = "MIT"
