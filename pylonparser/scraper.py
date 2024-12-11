@@ -182,6 +182,9 @@ class WebScraper:
                 table_list.append(table_dict)
         return table_list
 
+    def parse_ice_hockey_table(self, table_type: str):
+       html = HTMLParser(str(self.soup)) 
+
 
 if __name__ == "__main__":
     game_url = "https://www.basketball-reference.com/boxscores/202405220MIN.html"

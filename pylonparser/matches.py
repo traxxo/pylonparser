@@ -45,12 +45,16 @@ class FootballMatch(Match):
 
 
 class SoccerMatch(Match):
-    """_summary_
+    """
+    Represents a soccer match.
 
     Args:
-        Match (_type_): _description_
-    """
+        url (str): The URL of the soccer match.
 
+    Attributes:
+        home (dict): The statistics of the home team.
+        away (dict): The statistics of the away team.
+    """
     def __init__(self, url: str):
         super().__init__(url)
 
